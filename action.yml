@@ -1,0 +1,29 @@
+name: 'MyAISpeed - AI Latency Test'
+description: 'Test connection speed to major AI providers from your CI/CD pipeline'
+author: 'Reflect Memory, Inc.'
+branding:
+  icon: 'zap'
+  color: 'purple'
+inputs:
+  providers:
+    description: 'Comma-separated list of providers to test (default: all)'
+    required: false
+    default: 'all'
+  fail-threshold:
+    description: 'Fail the step if any provider latency exceeds this value in ms (0 = never fail)'
+    required: false
+    default: '0'
+  json-output:
+    description: 'Set to true to output results as JSON'
+    required: false
+    default: 'false'
+outputs:
+  results:
+    description: 'JSON array of test results'
+  fastest-provider:
+    description: 'Slug of the fastest provider'
+  fastest-latency:
+    description: 'Latency of the fastest provider in ms'
+runs:
+  using: 'node20'
+  main: 'src/index.js'
